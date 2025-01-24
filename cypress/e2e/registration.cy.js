@@ -1,15 +1,7 @@
 const { should } = require("chai");
-
-const signInBtn = "button.header_signin";
-const registrationBtn = ".modal-footer";
-const inputs = "form input";
-const loginBtn = ".modal-footer";
-const registrationName = "#signupName";
-const registrationLastName = "#signupLastName";
-const registrationEmail = "#signupEmail";
-const registrationPassword = "#signupPassword";
-const registrationRepeatPassword = "#signupRepeatPassword";
-const errorMessage = ".invalid-feedback p";
+import SignInForm from "../pages/forms/SignInForm";
+import RegistrationForm from "../pages/forms/RegistrationForm";
+import HomePage from "../pages/HomePage";
 
 describe("Registration tests - positive flow", () => {
   const user = {
@@ -20,25 +12,25 @@ describe("Registration tests - positive flow", () => {
   };
 
   beforeEach(() => {
-    cy.visit("/");
-    cy.get(signInBtn).click();
-    cy.get(loginBtn).contains("Registration").click();
+    HomePage.openPage();
+    HomePage.openSignInPopup();
+    SignInForm.openRegistrationFormPopup();
   });
 
   it("User can register an account", () => {
-    cy.get(registrationName).type(user.name);
-    cy.get(registrationLastName).type(user.lastName);
-    cy.get(registrationEmail).type(user.email);
-    cy.get(registrationPassword).type(user.password);
-    cy.get(registrationRepeatPassword).type(user.password);
-    cy.get(registrationBtn).contains("Register").click();
+    RegistrationForm.setName(user.name);
+    RegistrationForm.setLastName(user.lastName);
+    RegistrationForm.setEmail(user.email);
+    RegistrationForm.setPassword(user.password);
+    RegistrationForm.setRepeatPassword(user.password);
+    RegistrationForm.confirmRegister();
 
     cy.get(".h3").should("have.text", "You don’t have any cars in your garage");
     cy.visit("/panel/profile");
     cy.get(".display-4").should("have.text", `${user.name} ${user.lastName}`);
   });
 
-  describe("User can't be registered", () => {
+  describe("User can't be registered - Negative flow", () => {
     const user = {
       name: `Oleksii`,
       lastName: `Kud`,
@@ -47,9 +39,9 @@ describe("Registration tests - positive flow", () => {
     };
 
     beforeEach(() => {
-      cy.visit("/");
-      cy.get(signInBtn).click();
-      cy.get(registrationBtn).contains("Registration").click();
+      HomePage.openPage();
+      HomePage.openSignInPopup();
+      SignInForm.openRegistrationFormPopup();
     });
 
     it("Validation by required fields", () => {
@@ -61,14 +53,13 @@ describe("Registration tests - positive flow", () => {
         "Re-enter password required",
       ];
 
-      cy.get(registrationName).focus();
-      cy.get(registrationLastName).focus();
-      cy.get(registrationEmail).focus();
-      cy.get(registrationPassword).focus();
-      cy.get(registrationRepeatPassword).focus();
-      cy.get(registrationRepeatPassword).blur();
+      RegistrationForm.triggerErrorMessages(RegistrationForm.name);
+      RegistrationForm.triggerErrorMessages(RegistrationForm.lastName);
+      RegistrationForm.triggerErrorMessages(RegistrationForm.email);
+      RegistrationForm.triggerErrorMessages(RegistrationForm.password);
+      RegistrationForm.triggerErrorMessages(RegistrationForm.repeatPassword);
 
-      cy.get(errorMessage)
+      RegistrationForm.errorMessage
         .should("have.length", 5)
         .each((element, index) => {
           cy.wrap(element)
@@ -76,7 +67,7 @@ describe("Registration tests - positive flow", () => {
             .should("have.css", "color", "rgb(220, 53, 69)");
         });
 
-      cy.get(inputs)
+      RegistrationForm.inputs
         .should("have.length", 5)
         .each((element, index) => {
           cy.wrap(element).should(
@@ -86,7 +77,7 @@ describe("Registration tests - positive flow", () => {
           );
         });
 
-      cy.get(registrationBtn).contains("Register").should("be.disabled");
+      RegistrationForm.registrationBtn.should("be.disabled");
     });
 
     it("Validation by wrong data", () => {
@@ -97,21 +88,21 @@ describe("Registration tests - positive flow", () => {
         "Passwords do not match",
       ];
 
-      cy.get(registrationName).type("123");
-      cy.get(registrationLastName).type("123");
-      cy.get(registrationEmail).type("okudenko@");
-      cy.get(registrationEmail).blur();
-      cy.get(registrationPassword).type(user.password);
-      cy.get(registrationRepeatPassword).type(`${user.password}1234`);
-      cy.get(registrationRepeatPassword).blur();
+      RegistrationForm.setName("123");
+      RegistrationForm.setLastName("123");
+      RegistrationForm.setEmail("okudenko@");
+      RegistrationForm.triggerErrorMessages(RegistrationForm.email)
+      RegistrationForm.setPassword(user.password);
+      RegistrationForm.setRepeatPassword(`${user.password}1234`);
+      RegistrationForm.triggerErrorMessages(RegistrationForm.repeatPassword);
 
-      cy.get(errorMessage)
+      RegistrationForm.errorMessage
         .should("have.length", 4)
         .each((element, index) => {
           cy.wrap(element).should("have.text", validationMessages[index]);
         });
 
-      cy.get(registrationBtn).contains("Register").should("be.disabled");
+      RegistrationForm.registrationBtn.should("be.disabled");
     });
 
     it("Validation by wrong length", () => {
@@ -122,21 +113,21 @@ describe("Registration tests - positive flow", () => {
         "Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter",
       ];
 
-      cy.get(registrationName).type("a");
-      cy.get(registrationLastName).type("K");
-      cy.get(registrationPassword).type("123");
-      cy.get(registrationRepeatPassword).type("123");
+      RegistrationForm.setName("a");
+      RegistrationForm.setLastName("K");
+      RegistrationForm.setPassword("123");
+      RegistrationForm.setRepeatPassword("123");
 
-      cy.get(errorMessage).each((element, index) => {
+      RegistrationForm.errorMessage.each((element, index) => {
         cy.wrap(element).should("have.text", validationMessages[index]);
       });
 
-      cy.get(registrationName).clear().type("Oleksiiiiiiiiiiiiiiii");
-      cy.get(registrationLastName).clear().type("Kudenkooooooooooooooooooooo");
-      cy.get(registrationPassword).clear().type("123456789101112131415");
-      cy.get(registrationRepeatPassword).clear().type("123456789101112131415");
+      RegistrationForm.setName("Oleksiiiiiiiiiiiiiiii");
+      RegistrationForm.setLastName("Kudenkooooooooooooooooooooo");
+      RegistrationForm.setPassword("123456789101112131415");
+      RegistrationForm.setRepeatPassword("123456789101112131415");
 
-      cy.get(errorMessage).each((element, index) => {
+      RegistrationForm.errorMessage.each((element, index) => {
         cy.wrap(element).should("have.text", validationMessages[index]);
       });
     });

@@ -403,3 +403,13 @@ system-tests/lib/validations
 
 .nx/cache
 .nx/workspace-data
+
+.DS_Store
+*.log
+node_modules/
+mochawesome-report*/
+_site/
+coverage/
+.nyc_output/
+dist/
+cypress/results
