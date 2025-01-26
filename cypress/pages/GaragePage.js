@@ -20,53 +20,78 @@ class GaragePage {
   }
 
   get confirmAdding() {
-    return cy.get(".modal-footer").contains("Add").click();
+    return cy.get(".modal-footer").contains("Add");
   }
 
   get addedCars() {
     return cy.get(".car-list li");
   }
 
-  get modalPopup(){
-    return cy.get('.modal-content');
+  get modalPopup() {
+    return cy.get(".modal-content");
   }
 
-  openAddNewPopup(){
-    this.addNewCarBtn.should('be.visible').click();
+  get addCarExpensiveBtn() {
+    return cy.get("button.car_add-expense");
+  }
+
+  get litersInput() {
+    return cy.get("#addExpenseLiters");
+  }
+
+  get totalCostInput() {
+    return cy.get("#addExpenseTotalCost");
+  }
+
+  openAddNewPopup() {
+    this.addNewCarBtn.should("be.visible").click();
+  }
+
+  clickAddExpensesBtn(){
+    this.addedCars.first().find(".car .car_add-expense").click();
+  }
+
+  openAddExpensivePopupForToFirstCar(){
+    this.addCarExpensiveBtn.first().click();
   }
 
   addNewCar(brand, model, mileage) {
-    this.modalPopup.should('be.visible');
+    this.modalPopup.should("be.visible");
     this.brandDropdown.select(brand);
     this.modelDropdown.select(model);
     this.mileageInput.type(mileage);
-    this.confirmAdding.should('be.visible').click();
-    cy.get('.modal').should("not.be.visible");
-    cy.wait(2000);
+    this.confirmAdding.should("be.visible").click();
+    cy.get(".modal").should("not.be.visible");
   }
-
-  verifyLastAddedCar(brand, model, mileage){
-    this.addedCars.eq(0).find(this.carNamesSelector).should('have.text', carName);
-    this.brandDropdown.select(brand);
-    this.modelDropdown.select(model);
-    this.mileageInput.type(mileage);
-  }
-
-removeAllCars() {
-  cy.get('body').then(($body) => {
-    if ($body.find('.car-list li', {timeout: 5000 }).length > 0) {
-      cy.get('.car-list li').each((car) => {
-        cy.wrap(car).find(".icon-edit").click();
-        cy.contains("Remove car").click();
-        cy.get(".btn-danger").click();
-        cy.wait(500); 
-      });
-    } else {
-      cy.log('No cars to remove.');
-    }
-  });
-}
   
+  verifyLastAddedCar(brand, model, mileage) {
+    this.addedCars
+      .eq(0)
+      .find(this.carNamesSelector)
+      .should("have.text", carName);
+    this.brandDropdown.select(brand);
+    this.modelDropdown.select(model);
+    this.mileageInput.type(mileage);
+  }
+
+  openTheExpensesPopupOnAFirstCar(){
+    this.addCarExpensiveBtn.first().click();
+  }
+
+  removeAllCars() {
+    cy.get("body").then(($body) => {
+      if ($body.find(".car-list li", { timeout: 5000 }).length > 0) {
+        cy.get(".car-list li").each((car) => {
+          cy.wrap(car).find(".icon-edit").click();
+          cy.contains("Remove car").click();
+          cy.get(".btn-danger").click();
+          cy.wait(500);
+        });
+      } else {
+        cy.log("No cars to remove.");
+      }
+    });
+  }
 }
 
 export default new GaragePage();

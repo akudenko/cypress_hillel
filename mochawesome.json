@@ -1,24 +1,159 @@
 {
   "stats": {
-    "suites": 4,
-    "tests": 16,
-    "passes": 16,
+    "suites": 6,
+    "tests": 19,
+    "passes": 19,
     "pending": 0,
     "failures": 0,
-    "testsRegistered": 16,
+    "testsRegistered": 19,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2025-01-22T21:41:43.487Z",
-    "end": "2025-01-22T21:42:23.055Z",
-    "duration": 39568
+    "start": "2025-01-26T16:23:25.556Z",
+    "end": "2025-01-26T16:24:40.757Z",
+    "duration": 75201
   },
   "results": [
     {
-      "uuid": "ef992bbb-e02f-4cee-aaa0-2a2cb4d384b0",
+      "uuid": "cd434092-75a6-43c0-92c8-8fca18b8aaf9",
+      "title": "",
+      "fullFile": "cypress/e2e/expenses.cy.js",
+      "file": "cypress/e2e/expenses.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "88c002c9-2ae2-4ebb-a46c-ec457a350287",
+          "title": "Expenses - positive flows",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "User can add the expenses to a car from the Garage page",
+              "fullTitle": "Expenses - positive flows User can add the expenses to a car from the Garage page",
+              "timedOut": null,
+              "duration": 10953,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const formattedDate = new Intl.DateTimeFormat(\"uk-UA\").format(new Date());\nconst expectedData = [{\n  column: \"Date\",\n  value: formattedDate\n}, {\n  column: \"Mileage\",\n  value: \"400\"\n}, {\n  column: \"Liters used\",\n  value: \"600L\"\n}, {\n  column: \"Total cost\",\n  value: \"1800\"\n}];\n_GaragePage.default.openAddExpensivePopupForToFirstCar();\n_ExpensesForm.default.addExpensiveToFirstCar(400, 600, 1800);\n_AlertComponent.default.alertMessage.should(\"have.text\", \"Fuel expense added\");\nexpectedData.forEach(({\n  column,\n  value\n}) => {\n  _ExpensesPage.default.verifyTableValue(column, value);\n});",
+              "err": {},
+              "uuid": "34c65374-edfb-4fe8-bf7e-0e9a2dd53eaa",
+              "parentUUID": "88c002c9-2ae2-4ebb-a46c-ec457a350287",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "User can add the expenses to a car from the Expenses page",
+              "fullTitle": "Expenses - positive flows User can add the expenses to a car from the Expenses page",
+              "timedOut": null,
+              "duration": 7278,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const formattedDate = new Intl.DateTimeFormat(\"uk-UA\").format(new Date());\nconst expectedData = [{\n  column: \"Date\",\n  value: formattedDate\n}, {\n  column: \"Mileage\",\n  value: \"400\"\n}, {\n  column: \"Liters used\",\n  value: \"600L\"\n}, {\n  column: \"Total cost\",\n  value: \"1800\"\n}];\n_SideBarComponent.default.openMenuSection(\"Fuel expenses\");\n_ExpensesPage.default.openAddAnExpensesToCar();\n_ExpensesForm.default.addExpensiveToFirstCar(400, 600, 1800);\n_AlertComponent.default.alertMessage.should(\"have.text\", \"Fuel expense added\");\nexpectedData.forEach(({\n  column,\n  value\n}) => {\n  _ExpensesPage.default.verifyTableValue(column, value);\n});",
+              "err": {},
+              "uuid": "85739a16-44e5-4d17-8a58-553342c51232",
+              "parentUUID": "88c002c9-2ae2-4ebb-a46c-ec457a350287",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "34c65374-edfb-4fe8-bf7e-0e9a2dd53eaa",
+            "85739a16-44e5-4d17-8a58-553342c51232"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18231,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "e500b91d-8802-4c33-abcb-b7caad0c463c",
+      "title": "",
+      "fullFile": "cypress/e2e/garage.cy.js",
+      "file": "cypress/e2e/garage.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c7d6e39b-8e45-4a9a-b714-f2bbc3944557",
+          "title": "Garage - positive flows",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "User can add the new car",
+              "fullTitle": "Garage - positive flows User can add the new car",
+              "timedOut": null,
+              "duration": 8604,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_GaragePage.default.openAddNewPopup();\n_GaragePage.default.addNewCar(\"BMW\", \"5\", 200);\n_GaragePage.default.addedCars.should(\"have.length\", 1);\n_GaragePage.default.addedCars.first().should(\"contains.text\", \"BMW 5\");\n_AlertComponent.default.alertMessage.should(\"have.text\", \"Car added\");",
+              "err": {},
+              "uuid": "bc382827-a928-49be-bce2-69721a7321c9",
+              "parentUUID": "c7d6e39b-8e45-4a9a-b714-f2bbc3944557",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bc382827-a928-49be-bce2-69721a7321c9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8604,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "ec9280fd-2302-4292-ac6a-297981a36b51",
       "title": "",
       "fullFile": "cypress/e2e/login.cy.js",
       "file": "cypress/e2e/login.cy.js",
@@ -29,35 +164,35 @@
           "title": "User can login",
           "fullTitle": "User can login",
           "timedOut": null,
-          "duration": 3803,
+          "duration": 4175,
           "state": "passed",
           "speed": "fast",
           "pass": true,
           "fail": false,
           "pending": false,
           "context": null,
-          "code": "cy.login(\"phpcarieer+1@gmail.com\", \"5ENM7.SttmBczLu\", {\n  sensitive: true\n});\ncy.get(\".alert-wrap p\").should('have.text', 'You have been successfully logged in').should('be.visible');\ncy.get(\".panel-page h1\").should('have.text', 'Garage').should('be.visible');",
+          "code": "cy.login(\"phpcarieer+1@gmail.com\", \"5ENM7.SttmBczLu\", {\n  sensitive: true\n});\n_AlertComponent.default.alertMessage.should('have.text', 'You have been successfully logged in').should('be.visible');\n_GaragePage.default.mainTitle.should('have.text', 'Garage').should('be.visible');",
           "err": {},
-          "uuid": "5d75de20-4a4e-4a84-ae3a-fefc9e929a2c",
-          "parentUUID": "ef992bbb-e02f-4cee-aaa0-2a2cb4d384b0",
+          "uuid": "bd91abe8-7c7c-441d-af1d-be67f25865ed",
+          "parentUUID": "ec9280fd-2302-4292-ac6a-297981a36b51",
           "isHook": false,
           "skipped": false
         }
       ],
       "suites": [],
       "passes": [
-        "5d75de20-4a4e-4a84-ae3a-fefc9e929a2c"
+        "bd91abe8-7c7c-441d-af1d-be67f25865ed"
       ],
       "failures": [],
       "pending": [],
       "skipped": [],
-      "duration": 3803,
+      "duration": 4175,
       "root": true,
       "rootEmpty": false,
       "_timeout": 2000
     },
     {
-      "uuid": "83b3e038-89b1-454e-b4e4-2b7190ce6c5d",
+      "uuid": "4d17760f-ed6e-436e-a774-9571ebb656eb",
       "title": "",
       "fullFile": "cypress/e2e/registration.cy.js",
       "file": "cypress/e2e/registration.cy.js",
@@ -66,7 +201,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "76eb1235-6dfb-465b-95ae-94e5e256bec1",
+          "uuid": "7843f5d0-8c4e-4682-aaa8-1bf6ca555526",
           "title": "Registration tests - positive flow",
           "fullFile": "",
           "file": "",
@@ -77,25 +212,25 @@
               "title": "User can register an account",
               "fullTitle": "Registration tests - positive flow User can register an account",
               "timedOut": null,
-              "duration": 4975,
+              "duration": 6176,
               "state": "passed",
-              "speed": "fast",
+              "speed": "medium",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get(registrationName).type(user.name);\ncy.get(registrationLastName).type(user.lastName);\ncy.get(registrationEmail).type(user.email);\ncy.get(registrationPassword).type(user.password);\ncy.get(registrationRepeatPassword).type(user.password);\ncy.get(registrationBtn).contains(\"Register\").click();\ncy.get(\".h3\").should(\"have.text\", \"You don’t have any cars in your garage\");\ncy.visit(\"/panel/profile\");\ncy.get(\".display-4\").should(\"have.text\", `${user.name} ${user.lastName}`);",
+              "code": "_RegistrationForm.default.setName(user.name);\n_RegistrationForm.default.setLastName(user.lastName);\n_RegistrationForm.default.setEmail(user.email);\n_RegistrationForm.default.setPassword(user.password);\n_RegistrationForm.default.setRepeatPassword(user.password);\n_RegistrationForm.default.confirmRegister();\ncy.get(\".h3\").should(\"have.text\", \"You don’t have any cars in your garage\");\ncy.visit(\"/panel/profile\");\ncy.get(\".display-4\").should(\"have.text\", `${user.name} ${user.lastName}`);",
               "err": {},
-              "uuid": "fdce014e-e7f5-451e-806c-70550965f0e1",
-              "parentUUID": "76eb1235-6dfb-465b-95ae-94e5e256bec1",
+              "uuid": "5ed88bdc-2ebb-4523-8768-62b0c513ce22",
+              "parentUUID": "7843f5d0-8c4e-4682-aaa8-1bf6ca555526",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [
             {
-              "uuid": "0eb604da-f293-4719-9d46-0431a52104fb",
-              "title": "User can't be registered",
+              "uuid": "16f33060-6109-4459-bb96-0c604f445af9",
+              "title": "User can't be registered - Negative flow",
               "fullFile": "",
               "file": "",
               "beforeHooks": [],
@@ -103,81 +238,81 @@
               "tests": [
                 {
                   "title": "Validation by required fields",
-                  "fullTitle": "Registration tests - positive flow User can't be registered Validation by required fields",
+                  "fullTitle": "Registration tests - positive flow User can't be registered - Negative flow Validation by required fields",
                   "timedOut": null,
-                  "duration": 2590,
+                  "duration": 2331,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
                   "fail": false,
                   "pending": false,
                   "context": null,
-                  "code": "const validationMessages = [\"Name required\", \"Last name required\", \"Email required\", \"Password required\", \"Re-enter password required\"];\ncy.get(registrationName).focus();\ncy.get(registrationLastName).focus();\ncy.get(registrationEmail).focus();\ncy.get(registrationPassword).focus();\ncy.get(registrationRepeatPassword).focus();\ncy.get(registrationRepeatPassword).blur();\ncy.get(errorMessage).should(\"have.length\", 5).each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]).should(\"have.css\", \"color\", \"rgb(220, 53, 69)\");\n});\ncy.get(inputs).should(\"have.length\", 5).each((element, index) => {\n  cy.wrap(element).should(\"have.css\", \"border-color\", \"rgb(220, 53, 69)\");\n});\ncy.get(registrationBtn).contains(\"Register\").should(\"be.disabled\");",
+                  "code": "const validationMessages = [\"Name required\", \"Last name required\", \"Email required\", \"Password required\", \"Re-enter password required\"];\n_RegistrationForm.default.triggerErrorMessages(_RegistrationForm.default.name);\n_RegistrationForm.default.triggerErrorMessages(_RegistrationForm.default.lastName);\n_RegistrationForm.default.triggerErrorMessages(_RegistrationForm.default.email);\n_RegistrationForm.default.triggerErrorMessages(_RegistrationForm.default.password);\n_RegistrationForm.default.triggerErrorMessages(_RegistrationForm.default.repeatPassword);\n_RegistrationForm.default.errorMessage.should(\"have.length\", 5).each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]).should(\"have.css\", \"color\", \"rgb(220, 53, 69)\");\n});\n_RegistrationForm.default.inputs.should(\"have.length\", 5).each((element, index) => {\n  cy.wrap(element).should(\"have.css\", \"border-color\", \"rgb(220, 53, 69)\");\n});\n_RegistrationForm.default.registrationBtn.should(\"be.disabled\");",
                   "err": {},
-                  "uuid": "f169a7b5-c70d-4fa5-9b92-828fdf4c34d0",
-                  "parentUUID": "0eb604da-f293-4719-9d46-0431a52104fb",
+                  "uuid": "87a1a294-ba09-4d33-a371-fb8b2c6c4d57",
+                  "parentUUID": "16f33060-6109-4459-bb96-0c604f445af9",
                   "isHook": false,
                   "skipped": false
                 },
                 {
                   "title": "Validation by wrong data",
-                  "fullTitle": "Registration tests - positive flow User can't be registered Validation by wrong data",
+                  "fullTitle": "Registration tests - positive flow User can't be registered - Negative flow Validation by wrong data",
                   "timedOut": null,
-                  "duration": 3424,
+                  "duration": 3531,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
                   "fail": false,
                   "pending": false,
                   "context": null,
-                  "code": "const validationMessages = [\"Name is invalid\", \"Last name is invalid\", \"Email is incorrect\", \"Passwords do not match\"];\ncy.get(registrationName).type(\"123\");\ncy.get(registrationLastName).type(\"123\");\ncy.get(registrationEmail).type(\"okudenko@\");\ncy.get(registrationEmail).blur();\ncy.get(registrationPassword).type(user.password);\ncy.get(registrationRepeatPassword).type(`${user.password}1234`);\ncy.get(registrationRepeatPassword).blur();\ncy.get(errorMessage).should(\"have.length\", 4).each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]);\n});\ncy.get(registrationBtn).contains(\"Register\").should(\"be.disabled\");",
+                  "code": "const validationMessages = [\"Name is invalid\", \"Last name is invalid\", \"Email is incorrect\", \"Passwords do not match\"];\n_RegistrationForm.default.setName(\"123\");\n_RegistrationForm.default.setLastName(\"123\");\n_RegistrationForm.default.setEmail(\"okudenko@\");\n_RegistrationForm.default.triggerErrorMessages(_RegistrationForm.default.email);\n_RegistrationForm.default.setPassword(user.password);\n_RegistrationForm.default.setRepeatPassword(`${user.password}1234`);\n_RegistrationForm.default.triggerErrorMessages(_RegistrationForm.default.repeatPassword);\n_RegistrationForm.default.errorMessage.should(\"have.length\", 4).each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]);\n});\n_RegistrationForm.default.registrationBtn.should(\"be.disabled\");",
                   "err": {},
-                  "uuid": "455f36b0-70ab-44db-a99e-3e260e77d065",
-                  "parentUUID": "0eb604da-f293-4719-9d46-0431a52104fb",
+                  "uuid": "477ca299-3da7-4095-95b3-2ffa17b08f78",
+                  "parentUUID": "16f33060-6109-4459-bb96-0c604f445af9",
                   "isHook": false,
                   "skipped": false
                 },
                 {
                   "title": "Validation by wrong length",
-                  "fullTitle": "Registration tests - positive flow User can't be registered Validation by wrong length",
+                  "fullTitle": "Registration tests - positive flow User can't be registered - Negative flow Validation by wrong length",
                   "timedOut": null,
-                  "duration": 5049,
+                  "duration": 4310,
                   "state": "passed",
-                  "speed": "medium",
+                  "speed": "fast",
                   "pass": true,
                   "fail": false,
                   "pending": false,
                   "context": null,
-                  "code": "const validationMessages = [\"Name has to be from 2 to 20 characters long\", \"Last name has to be from 2 to 20 characters long\", \"Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter\", \"Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter\"];\ncy.get(registrationName).type(\"a\");\ncy.get(registrationLastName).type(\"K\");\ncy.get(registrationPassword).type(\"123\");\ncy.get(registrationRepeatPassword).type(\"123\");\ncy.get(errorMessage).each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]);\n});\ncy.get(registrationName).clear().type(\"Oleksiiiiiiiiiiiiiiii\");\ncy.get(registrationLastName).clear().type(\"Kudenkooooooooooooooooooooo\");\ncy.get(registrationPassword).clear().type(\"123456789101112131415\");\ncy.get(registrationRepeatPassword).clear().type(\"123456789101112131415\");\ncy.get(errorMessage).each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]);\n});",
+                  "code": "const validationMessages = [\"Name has to be from 2 to 20 characters long\", \"Last name has to be from 2 to 20 characters long\", \"Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter\", \"Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter\"];\n_RegistrationForm.default.setName(\"a\");\n_RegistrationForm.default.setLastName(\"K\");\n_RegistrationForm.default.setPassword(\"123\");\n_RegistrationForm.default.setRepeatPassword(\"123\");\n_RegistrationForm.default.errorMessage.each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]);\n});\n_RegistrationForm.default.setName(\"Oleksiiiiiiiiiiiiiiii\");\n_RegistrationForm.default.setLastName(\"Kudenkooooooooooooooooooooo\");\n_RegistrationForm.default.setPassword(\"123456789101112131415\");\n_RegistrationForm.default.setRepeatPassword(\"123456789101112131415\");\n_RegistrationForm.default.errorMessage.each((element, index) => {\n  cy.wrap(element).should(\"have.text\", validationMessages[index]);\n});",
                   "err": {},
-                  "uuid": "d5083776-25ab-4526-ae6f-11e1dcc887c9",
-                  "parentUUID": "0eb604da-f293-4719-9d46-0431a52104fb",
+                  "uuid": "3642f3ea-6575-4054-a529-a1fe6fb255fd",
+                  "parentUUID": "16f33060-6109-4459-bb96-0c604f445af9",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "f169a7b5-c70d-4fa5-9b92-828fdf4c34d0",
-                "455f36b0-70ab-44db-a99e-3e260e77d065",
-                "d5083776-25ab-4526-ae6f-11e1dcc887c9"
+                "87a1a294-ba09-4d33-a371-fb8b2c6c4d57",
+                "477ca299-3da7-4095-95b3-2ffa17b08f78",
+                "3642f3ea-6575-4054-a529-a1fe6fb255fd"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 11063,
+              "duration": 10172,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             }
           ],
           "passes": [
-            "fdce014e-e7f5-451e-806c-70550965f0e1"
+            "5ed88bdc-2ebb-4523-8768-62b0c513ce22"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 4975,
+          "duration": 6176,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -193,7 +328,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "2ec5638d-dca6-4de0-90a5-cdb9c53c3113",
+      "uuid": "ac7252ce-e6a8-480b-8f73-ef61a348a03b",
       "title": "",
       "fullFile": "cypress/e2e/1-getting-started/todo.cy.js",
       "file": "cypress/e2e/1-getting-started/todo.cy.js",
@@ -202,7 +337,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "7d7b4431-58d9-47b1-b875-91a3857893e0",
+          "uuid": "d4159f83-733f-4a33-8d70-804ca2be83ad",
           "title": "example to-do app",
           "fullFile": "",
           "file": "",
@@ -213,7 +348,7 @@
               "title": "displays two todo items by default",
               "fullTitle": "example to-do app displays two todo items by default",
               "timedOut": null,
-              "duration": 746,
+              "duration": 606,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -222,8 +357,8 @@
               "context": null,
               "code": "// We use the `cy.get()` command to get all elements that match the selector.\n// Then, we use `should` to assert that there are two matched items,\n// which are the two default items.\ncy.get('.todo-list li').should('have.length', 2);\n// We can go even further and check that the default todos each contain\n// the correct text. We use the `first` and `last` functions\n// to get just the first and last matched elements individually,\n// and then perform an assertion with `should`.\ncy.get('.todo-list li').first().should('have.text', 'Pay electric bill');\ncy.get('.todo-list li').last().should('have.text', 'Walk the dog');",
               "err": {},
-              "uuid": "76126b16-acd5-418a-b0d9-b4e544c2985f",
-              "parentUUID": "7d7b4431-58d9-47b1-b875-91a3857893e0",
+              "uuid": "3c6055ac-7311-4b83-a919-6c43c2f2dcb9",
+              "parentUUID": "d4159f83-733f-4a33-8d70-804ca2be83ad",
               "isHook": false,
               "skipped": false
             },
@@ -231,7 +366,7 @@
               "title": "can add new todo items",
               "fullTitle": "example to-do app can add new todo items",
               "timedOut": null,
-              "duration": 491,
+              "duration": 634,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -240,8 +375,8 @@
               "context": null,
               "code": "// We'll store our item text in a variable so we can reuse it\nconst newItem = 'Feed the cat';\n// Let's get the input element and use the `type` command to\n// input our new list item. After typing the content of our item,\n// we need to type the enter key as well in order to submit the input.\n// This input has a data-test attribute so we'll use that to select the\n// element in accordance with best practices:\n// https://on.cypress.io/selecting-elements\ncy.get('[data-test=new-todo]').type(`${newItem}{enter}`);\n// Now that we've typed our new item, let's check that it actually was added to the list.\n// Since it's the newest item, it should exist as the last element in the list.\n// In addition, with the two default items, we should have a total of 3 elements in the list.\n// Since assertions yield the element that was asserted on,\n// we can chain both of these assertions together into a single statement.\ncy.get('.todo-list li').should('have.length', 3).last().should('have.text', newItem);",
               "err": {},
-              "uuid": "4dbd3264-6113-48f0-bdb0-fb6da732a776",
-              "parentUUID": "7d7b4431-58d9-47b1-b875-91a3857893e0",
+              "uuid": "376c51d1-eaed-415f-8fbf-467f3371338d",
+              "parentUUID": "d4159f83-733f-4a33-8d70-804ca2be83ad",
               "isHook": false,
               "skipped": false
             },
@@ -249,7 +384,7 @@
               "title": "can check off an item as completed",
               "fullTitle": "example to-do app can check off an item as completed",
               "timedOut": null,
-              "duration": 251,
+              "duration": 279,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -258,15 +393,15 @@
               "context": null,
               "code": "// In addition to using the `get` command to get an element by selector,\n// we can also use the `contains` command to get an element by its contents.\n// However, this will yield the <label>, which is lowest-level element that contains the text.\n// In order to check the item, we'll find the <input> element for this <label>\n// by traversing up the dom to the parent element. From there, we can `find`\n// the child checkbox <input> element and use the `check` command to check it.\ncy.contains('Pay electric bill').parent().find('input[type=checkbox]').check();\n// Now that we've checked the button, we can go ahead and make sure\n// that the list element is now marked as completed.\n// Again we'll use `contains` to find the <label> element and then use the `parents` command\n// to traverse multiple levels up the dom until we find the corresponding <li> element.\n// Once we get that element, we can assert that it has the completed class.\ncy.contains('Pay electric bill').parents('li').should('have.class', 'completed');",
               "err": {},
-              "uuid": "d181f8a3-8ea5-4e21-9b12-a6f318efe0ab",
-              "parentUUID": "7d7b4431-58d9-47b1-b875-91a3857893e0",
+              "uuid": "c4b7ec4a-2c50-43d7-ba11-3c73875990d3",
+              "parentUUID": "d4159f83-733f-4a33-8d70-804ca2be83ad",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [
             {
-              "uuid": "e421d3e2-70c7-4a3a-9ad6-050f1a4f0823",
+              "uuid": "7b8e4c9f-f5fc-4eb4-9345-947cae4b96ec",
               "title": "with a checked task",
               "fullFile": "",
               "file": "",
@@ -277,7 +412,7 @@
                   "title": "can filter for uncompleted tasks",
                   "fullTitle": "example to-do app with a checked task can filter for uncompleted tasks",
                   "timedOut": null,
-                  "duration": 744,
+                  "duration": 621,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -286,8 +421,8 @@
                   "context": null,
                   "code": "// We'll click on the \"active\" button in order to\n// display only incomplete items\ncy.contains('Active').click();\n// After filtering, we can assert that there is only the one\n// incomplete item in the list.\ncy.get('.todo-list li').should('have.length', 1).first().should('have.text', 'Walk the dog');\n// For good measure, let's also assert that the task we checked off\n// does not exist on the page.\ncy.contains('Pay electric bill').should('not.exist');",
                   "err": {},
-                  "uuid": "1b80edbd-25db-4f83-9ce1-7a467ddf5b16",
-                  "parentUUID": "e421d3e2-70c7-4a3a-9ad6-050f1a4f0823",
+                  "uuid": "57e9cb6d-c1ed-490b-985e-e87209f956af",
+                  "parentUUID": "7b8e4c9f-f5fc-4eb4-9345-947cae4b96ec",
                   "isHook": false,
                   "skipped": false
                 },
@@ -295,7 +430,7 @@
                   "title": "can filter for completed tasks",
                   "fullTitle": "example to-do app with a checked task can filter for completed tasks",
                   "timedOut": null,
-                  "duration": 566,
+                  "duration": 704,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -304,8 +439,8 @@
                   "context": null,
                   "code": "// We can perform similar steps as the test above to ensure\n// that only completed tasks are shown\ncy.contains('Completed').click();\ncy.get('.todo-list li').should('have.length', 1).first().should('have.text', 'Pay electric bill');\ncy.contains('Walk the dog').should('not.exist');",
                   "err": {},
-                  "uuid": "1cf7c28c-c117-404f-881a-2ecd87600835",
-                  "parentUUID": "e421d3e2-70c7-4a3a-9ad6-050f1a4f0823",
+                  "uuid": "47999d50-9842-4787-8868-d463af6a1dd0",
+                  "parentUUID": "7b8e4c9f-f5fc-4eb4-9345-947cae4b96ec",
                   "isHook": false,
                   "skipped": false
                 },
@@ -313,7 +448,7 @@
                   "title": "can delete all completed tasks",
                   "fullTitle": "example to-do app with a checked task can delete all completed tasks",
                   "timedOut": null,
-                  "duration": 341,
+                  "duration": 384,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -322,36 +457,36 @@
                   "context": null,
                   "code": "// First, let's click the \"Clear completed\" button\n// `contains` is actually serving two purposes here.\n// First, it's ensuring that the button exists within the dom.\n// This button only appears when at least one task is checked\n// so this command is implicitly verifying that it does exist.\n// Second, it selects the button so we can click it.\ncy.contains('Clear completed').click();\n// Then we can make sure that there is only one element\n// in the list and our element does not exist\ncy.get('.todo-list li').should('have.length', 1).should('not.have.text', 'Pay electric bill');\n// Finally, make sure that the clear button no longer exists.\ncy.contains('Clear completed').should('not.exist');",
                   "err": {},
-                  "uuid": "c1a022b2-5a75-4eb7-9ceb-309d47ed2d4a",
-                  "parentUUID": "e421d3e2-70c7-4a3a-9ad6-050f1a4f0823",
+                  "uuid": "79fc2478-2f78-4a16-bd11-73b8e85f2e89",
+                  "parentUUID": "7b8e4c9f-f5fc-4eb4-9345-947cae4b96ec",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "1b80edbd-25db-4f83-9ce1-7a467ddf5b16",
-                "1cf7c28c-c117-404f-881a-2ecd87600835",
-                "c1a022b2-5a75-4eb7-9ceb-309d47ed2d4a"
+                "57e9cb6d-c1ed-490b-985e-e87209f956af",
+                "47999d50-9842-4787-8868-d463af6a1dd0",
+                "79fc2478-2f78-4a16-bd11-73b8e85f2e89"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 1651,
+              "duration": 1709,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             }
           ],
           "passes": [
-            "76126b16-acd5-418a-b0d9-b4e544c2985f",
-            "4dbd3264-6113-48f0-bdb0-fb6da732a776",
-            "d181f8a3-8ea5-4e21-9b12-a6f318efe0ab"
+            "3c6055ac-7311-4b83-a919-6c43c2f2dcb9",
+            "376c51d1-eaed-415f-8fbf-467f3371338d",
+            "c4b7ec4a-2c50-43d7-ba11-3c73875990d3"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1488,
+          "duration": 1519,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -367,7 +502,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "2fd62d5f-c11e-4291-8a08-9ddf9f00916f",
+      "uuid": "ae1dc8f3-8994-4bef-9137-fe52b6e7d1c2",
       "title": "",
       "fullFile": "cypress/e2e/cypressQueries.cy.js",
       "file": "cypress/e2e/cypressQueries.cy.js",
@@ -376,7 +511,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "96205cfb-622b-49e4-9769-acbfaa690ca0",
+          "uuid": "86797fc4-aed8-4675-adf8-513e9556da2a",
           "title": "Find all buttons from the header",
           "fullFile": "",
           "file": "",
@@ -387,17 +522,17 @@
               "title": "All buttons from header should be displayed",
               "fullTitle": "Find all buttons from the header All buttons from header should be displayed",
               "timedOut": null,
-              "duration": 2258,
+              "duration": 5056,
               "state": "passed",
-              "speed": "fast",
+              "speed": "medium",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "cy.get(hederLogo).should(\"be.visible\");\ncy.get(homeBtn).should(\"be.visible\");\ncy.get(aboutBtn).should(\"be.visible\");\ncy.get(contactBtn).should(\"be.visible\");\ncy.get(guestLoginBtn).should(\"be.visible\");\ncy.get(signInBtn).should(\"be.visible\");\ncy.get(singUpBtn).should(\"be.visible\");",
               "err": {},
-              "uuid": "ab1ca396-d56b-4ec9-b2b8-52bb9d9c260b",
-              "parentUUID": "96205cfb-622b-49e4-9769-acbfaa690ca0",
+              "uuid": "e796908c-eab1-4f12-b853-98394489e1f3",
+              "parentUUID": "86797fc4-aed8-4675-adf8-513e9556da2a",
               "isHook": false,
               "skipped": false
             },
@@ -405,7 +540,7 @@
               "title": "Sign In popup can be opened",
               "fullTitle": "Find all buttons from the header Sign In popup can be opened",
               "timedOut": null,
-              "duration": 1186,
+              "duration": 1149,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -414,8 +549,8 @@
               "context": null,
               "code": "cy.get(signInBtn).click();\ncy.get(modalTitle).should(\"have.text\", \"Log in\");",
               "err": {},
-              "uuid": "470b1c48-7e41-40a8-8ed0-6d77245d2ce0",
-              "parentUUID": "96205cfb-622b-49e4-9769-acbfaa690ca0",
+              "uuid": "1f211ddb-6f4c-401d-af05-52026d5c49f0",
+              "parentUUID": "86797fc4-aed8-4675-adf8-513e9556da2a",
               "isHook": false,
               "skipped": false
             },
@@ -423,7 +558,7 @@
               "title": "Sign Up popup can be opened",
               "fullTitle": "Find all buttons from the header Sign Up popup can be opened",
               "timedOut": null,
-              "duration": 745,
+              "duration": 881,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -432,28 +567,28 @@
               "context": null,
               "code": "cy.get(singUpBtn).click();\ncy.get(modalTitle).should(\"have.text\", \"Registration\");",
               "err": {},
-              "uuid": "25bd274b-556e-4ad9-9355-e994662141c1",
-              "parentUUID": "96205cfb-622b-49e4-9769-acbfaa690ca0",
+              "uuid": "60af6c2c-9257-469c-8336-8b326ab39e31",
+              "parentUUID": "86797fc4-aed8-4675-adf8-513e9556da2a",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "ab1ca396-d56b-4ec9-b2b8-52bb9d9c260b",
-            "470b1c48-7e41-40a8-8ed0-6d77245d2ce0",
-            "25bd274b-556e-4ad9-9355-e994662141c1"
+            "e796908c-eab1-4f12-b853-98394489e1f3",
+            "1f211ddb-6f4c-401d-af05-52026d5c49f0",
+            "60af6c2c-9257-469c-8336-8b326ab39e31"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 4189,
+          "duration": 7086,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "631fd9ce-2f9d-42d2-a28d-8e16d2a41f43",
+          "uuid": "b882a219-e6d7-40a2-bf5e-4c55d1108461",
           "title": "Find all buttons from the footer",
           "fullFile": "",
           "file": "",
@@ -464,7 +599,7 @@
               "title": "All buttons from footer should be displayed",
               "fullTitle": "Find all buttons from the footer All buttons from footer should be displayed",
               "timedOut": null,
-              "duration": 1194,
+              "duration": 661,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -473,8 +608,8 @@
               "context": null,
               "code": "cy.get(contactsBlock).children().each(a => {\n  cy.wrap(a).should(\"be.visible\");\n});",
               "err": {},
-              "uuid": "d7774db6-4b5e-45e4-ac4c-e822b1008b15",
-              "parentUUID": "631fd9ce-2f9d-42d2-a28d-8e16d2a41f43",
+              "uuid": "656103c2-3ea0-43f3-81cf-bfc7a112d051",
+              "parentUUID": "b882a219-e6d7-40a2-bf5e-4c55d1108461",
               "isHook": false,
               "skipped": false
             },
@@ -482,7 +617,7 @@
               "title": "All links from bottom are displayed",
               "fullTitle": "Find all buttons from the footer All links from bottom are displayed",
               "timedOut": null,
-              "duration": 595,
+              "duration": 633,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -491,21 +626,21 @@
               "context": null,
               "code": "cy.get(hillelLinkBottom).should(\"be.visible\");\ncy.get(supportHillelLinkBottom).should(\"be.visible\");",
               "err": {},
-              "uuid": "d66fd8ba-011a-49d5-a737-cb7b0d708e51",
-              "parentUUID": "631fd9ce-2f9d-42d2-a28d-8e16d2a41f43",
+              "uuid": "1a144332-e556-40eb-b9f9-4773b219fb8c",
+              "parentUUID": "b882a219-e6d7-40a2-bf5e-4c55d1108461",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "d7774db6-4b5e-45e4-ac4c-e822b1008b15",
-            "d66fd8ba-011a-49d5-a737-cb7b0d708e51"
+            "656103c2-3ea0-43f3-81cf-bfc7a112d051",
+            "1a144332-e556-40eb-b9f9-4773b219fb8c"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1789,
+          "duration": 1294,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -539,10 +674,11 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/results",
+        "reportDir": "cypress/reports/.jsons",
         "overwrite": false,
         "html": false,
-        "json": true
+        "json": true,
+        "inline": true
       },
       "version": "6.2.0"
     }

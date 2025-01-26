@@ -10,15 +10,6 @@ class HomePage {
   openSignInPopup() {
     this.signInBtn.click();
   }
-
-  loginWithAdminUser() {
-    cy.fixture("users").then((credentials) => {
-      const user = credentials.user;
-      const password = credentials.password;
-
-      cy.login(user, password, { sensitive: true });
-    });
-  }
 }
 
 export default new HomePage();

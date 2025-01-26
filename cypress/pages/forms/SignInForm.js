@@ -1,41 +1,45 @@
 class SignInForm {
+  get registrationBtn() {
+    return cy.get(".modal-footer").contains("Registration");
+  }
 
-    get registrationBtn(){
-        return cy.get(".modal-footer").contains("Registration");
-    }
+  get inputs() {
+    return cy.get("form input");
+  }
 
-    get inputs(){
-        return cy.get("form input");
-    }
+  get loginBtn() {
+    return cy.get(".modal-footer");
+  }
 
-    get loginBtn(){
-        return cy.get(".modal-footer");
-    }
+  get errorMessage() {
+    return cy.get(".invalid-feedback p");
+  }
 
-    get errorMessage(){
-        return cy.get(".invalid-feedback p");
-    }
+  openRegistrationFormPopup() {
+    this.registrationBtn.click();
+  }
 
-    openRegistrationFormPopup(){
-        this.registrationBtn.click();
-    }
+  setEmail(email) {
+    this.registrationEmail.type(email);
+  }
 
-    setEmail(email){
-        this.registrationEmail.type(email);
-    }
+  setPassword(password) {
+    this.registrationPassword.type(password);
+  }
 
-    setPassword(password){
-        this.registrationPassword.type(password);
-    }
+  setConfirmPassword(password) {
+    this.registrationRepeatPassword.type(password);
+  }
 
-    setConfirmPassword(password){
-        this.registrationRepeatPassword.type(password);
-    }
+  confirmRegister() {
+    this.registrationBtn.click();
+  }
 
-    confirmRegister(){
-        this.registrationBtn.click();
-    }
-
+  loginWithAdminUser() {
+    cy.login(Cypress.env('USER_EMAIL'), Cypress.env('USER_PASSWORD'), {
+      sensitive: true,
+    });
+  }
 }
 
 export default new SignInForm();

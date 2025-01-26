@@ -408,6 +408,7 @@ system-tests/lib/validations
 *.log
 node_modules/
 mochawesome-report*/
+reports*/
 _site/
 coverage/
 .nyc_output/

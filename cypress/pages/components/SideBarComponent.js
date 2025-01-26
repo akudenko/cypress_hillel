@@ -1,7 +1,7 @@
 class SideBarComponent {
 
     openMenuSection(name){
-        cy.get(`a[routerlink='${name}']`).click()
+        cy.get('a').contains(`${name.trim()}`).click()
     }
 }
 
